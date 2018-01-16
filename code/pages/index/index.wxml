@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<image src="/pages/assets/bg.png" class="w-100vw h-100vh fixed" width="100vw" ></image>
+<view class="container px-40px pt-80px fixed w-100vw">
+  <view class=" bg-fff px-60px b-r-10px" style="height: 800rpx;width: 100%">
+    <view class=''>
+      <view class="b-b-174 py-20px">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">
+            {{array[index]}}
+          </view>
+        </picker>
+      </view>
+      <view class="flex justify-between fs-24px b-b-174">
+        <view class="fs-24px">
+          设置难度
+        </view>
+        <view class="">
+          <text class="rgb174 w-102px h-60px b174 pd-10px">简单</text>
+          <text class="rgb174 w-102px h-60px b174 pd-10px">正常</text>
+          <text class="rgb174 w-102px h-60px b174 pd-10px">困难</text>
+          <text class="rgb174 w-102px h-60px b174 pd-10px">变态</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
+</view>

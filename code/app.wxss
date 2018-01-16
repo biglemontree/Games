@@ -1,0 +1,39 @@
+/**app.wxss**/
+
+@import './styles/basscss.wxss';
+@import './styles/index-wxapp.wxss';
+view {box-sizing: border-box;}
+.w-100vw {width: 100vw;}
+.w-100 {width: 100%;}
+.h-100vh {height: 100vh;}
+.w-102px {width: 102rpx;}
+.h-60px {height: 60rpx;}
+.pd-10px {padding: 20rpx;}
+
+.px-50px {
+  padding-left: 50rpx;
+  padding-right: 50rpx;
+}
+.px-40px {
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.px-60px {
+  padding-left: 60rpx;
+  padding-right: 60rpx;
+}
+.pt-80px {padding-top: 80rpx;}
+.pd-20px {padding: 20rpx;}
+
+.pd-30px {padding: 60rpx;}
+.bg-fff  {background-color: #ffffff;}
+
+.rgb174 {
+  color: rgb(174, 174, 174);
+}
+.rgb233 {
+  color: rgb(233, 90, 86);
+}
+.b174 { border: 1px solid rgb(174, 174, 174);}
+.b-b-174 {border-bottom: 1px solid rgb(174, 174, 174);}
+.b-r-10px {border-radius: 10rpx}

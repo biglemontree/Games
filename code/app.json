@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cash/index",
+    "pages/question/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "欢乐翻牌",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "rgb(233, 90, 86)",
+    "selectedColor": "#fff",
+    "backgroundColor": "#FE4437",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的记录",
+        "iconPath": "./pages/assets/1.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "余额提现",
+        "iconPath": "./pages/assets/2.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "常见问题",
+        "iconPath": "./pages/assets/3.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}
