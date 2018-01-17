@@ -1,4 +1,10 @@
 /**index.wxss**/
 view {
-  font-size: 24rpx;
+  font-size: 28rpx;
+}
+
+.active {
+  background-color: #D95940;
+  color: #ffffff;
+  border: none;
 }

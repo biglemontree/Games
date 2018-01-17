@@ -10,19 +10,35 @@ Page({
       motto: 'Hello World',
       array: ['能找到这个福利算你赢', '中国', '巴西', '日本'],
     index: 0,
-
+    hardLevel: ['简单', '正常', '困难', '变态'],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  bindPickerChange: function(e) {
+    console.log(e)
+    this.setData({
+        index: e.detail.value
     })
   },
+    setting(e){
+      let index = e.target.dataset.index
+        this.setData({
+            activeIndex: index
+        })
+    },
   onLoad: function () {
+      wx.getUserInfo({
+          success: res => {
+              app.globalData.userInfo = res.userInfo
+              this.setData({
+                  userInfo: res.userInfo,
+                  hasUserInfo: true
+              })
+          }
+      })
     // request({
     //     // url: apis.getLogin
     // })
@@ -35,6 +51,7 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
+        console.log(res.userInfo)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
@@ -52,7 +69,7 @@ Page({
         }
       })
     }
-    console.log(this.data)
+
     // const ctx = wx.createCanvasContext('myCanvas')
     // ctx.setFillStyle('red')
     // ctx.fillRect(10, 10, 150, 75)
@@ -69,5 +86,8 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+    formSubmit(e){
+        console.log(e)
+    }
 })

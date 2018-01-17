@@ -1,0 +1,10 @@
+/* pages/record/index.wxss */
+.active {
+    color: rgb(253, 68, 56);
+    background-color: #fff;
+    border-radius: 40rpx;
+}
+
+.translate {
+    transform: translateY(-60rpx);
+}

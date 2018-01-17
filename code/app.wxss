@@ -3,11 +3,19 @@
 @import './styles/basscss.wxss';
 @import './styles/index-wxapp.wxss';
 view {box-sizing: border-box;}
+.flex-1 {flex: 1;}
+.top-50 {top: -50%;}
 .w-100vw {width: 100vw;}
 .w-100 {width: 100%;}
-.h-100vh {height: 100vh;}
+.w-50px {width: 50rpx;}
 .w-102px {width: 102rpx;}
+.w-142px {width: 142rpx;}
+
+.h-100vh {height: 100vh;}
+.h-30px {height: 30rpx;}
+.h-50px {height: 50rpx;}
 .h-60px {height: 60rpx;}
+.h-142px {height: 142rpx;}
 .pd-10px {padding: 20rpx;}
 
 .px-50px {
@@ -24,9 +32,11 @@ view {box-sizing: border-box;}
 }
 .pt-80px {padding-top: 80rpx;}
 .pd-20px {padding: 20rpx;}
-
 .pd-30px {padding: 60rpx;}
+
+.mt-300px {margin-top: 300rpx}
 .bg-fff  {background-color: #ffffff;}
+.bg-eee  {background-color: #eeeeee;}
 
 .rgb174 {
   color: rgb(174, 174, 174);
@@ -37,3 +47,4 @@ view {box-sizing: border-box;}
 .b174 { border: 1px solid rgb(174, 174, 174);}
 .b-b-174 {border-bottom: 1px solid rgb(174, 174, 174);}
 .b-r-10px {border-radius: 10rpx}
+.b-r-50px {border-radius: 50rpx}

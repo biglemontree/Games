@@ -1,0 +1,33 @@
+<!--pages/record/index.wxml-->
+
+<view class="h-100vh bg-eee">
+    <image src="../assets/bg_top.png" class="w-100 absolute"></image>
+    <view class="absolute left-0 right-0 z3 mt-20px" style="width: 80%;margin-left: 10%;">
+        <view class="flex right-0 fs-24px b-r-50px z4 h-60px" style="background: #FA7959;" bindtap="change">
+            <view class="c-fff flex-auto center items-center {{index=='1'?'active': ''}}" data-index="1" style="line-height: 60rpx">
+                我发出的
+            </view>
+            <view class="c-fff flex-auto center {{index=='2'?'active': ''}}" data-index="2" style="line-height: 60rpx">
+                我收到的
+            </view>
+        </view>
+        <!--<view class="right-0 h-30px" style="background-image: url('../assets/money.png')"></view>-->
+    </view>
+    <view style="width: 90%;margin-left: 5%;margin-top: 300rpx;" class="z3 absolute bg-fff b-r-10px center pb-30px">
+        <image src="{{userInfo.avatarUrl}}" class="avatar translate" style="width: 120rpx;height: 120rpx;border-radius: 50%;"></image>
+        <view class="mt-10px translate">
+            <view class="center fs-36px">{{userInfo.nickName}}</view>
+            <view class="center fs-30px rgb174">{{index=='1'?'发出的': '收到的'}}</view>
+        </view>
+        <view class="flex justify-around fs-30px mt-30px translate">
+            <view>
+                <view class="center">0</view>
+                <view class="rgb174 center mt-10px">金额(元)</view>
+            </view>
+            <view class="">
+                <view class="center">0</view>
+                <view class="rgb174 center mt-10px">数量(个)</view>
+            </view>
+        </view>
+    </view>
+</view>

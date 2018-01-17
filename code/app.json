@@ -3,13 +3,13 @@
     "pages/index/index",
     "pages/cash/index",
     "pages/question/index",
-    "pages/logs/logs"
+    "pages/record/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#FC4837",
     "navigationBarTitleText": "欢乐翻牌",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "rgb(233, 90, 86)",
@@ -17,17 +17,17 @@
     "backgroundColor": "#FE4437",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/record/index",
         "text": "我的记录",
         "iconPath": "./pages/assets/1.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/cash/index",
         "text": "余额提现",
         "iconPath": "./pages/assets/2.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/question/index",
         "text": "常见问题",
         "iconPath": "./pages/assets/3.png"
       }
