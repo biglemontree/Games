@@ -31,13 +31,16 @@ view {box-sizing: border-box;}
   padding-right: 60rpx;
 }
 .pt-80px {padding-top: 80rpx;}
+.pt-40px {padding-top: 40rpx;}
 .pd-20px {padding: 20rpx;}
-.pd-30px {padding: 60rpx;}
+.pd-30px {padding: 30rpx;}
 
+.mt-50px {margin-top: 50rpx}
+.mt-90px {margin-top: 90rpx}
 .mt-300px {margin-top: 300rpx}
 .bg-fff  {background-color: #ffffff;}
 .bg-eee  {background-color: #eeeeee;}
-
+.c-blue{color: #6B83C2}
 .rgb174 {
   color: rgb(174, 174, 174);
 }
@@ -45,6 +48,11 @@ view {box-sizing: border-box;}
   color: rgb(233, 90, 86);
 }
 .b174 { border: 1px solid rgb(174, 174, 174);}
+.b-t-174 {border-top: 1px solid rgb(174, 174, 174);}
 .b-b-174 {border-bottom: 1px solid rgb(174, 174, 174);}
 .b-r-10px {border-radius: 10rpx}
 .b-r-50px {border-radius: 50rpx}
+
+.translate {
+  transform: translateY(-60rpx);
+}

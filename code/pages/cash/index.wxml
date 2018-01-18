@@ -1,2 +1,22 @@
 <!--pages/cash/index.wxml-->
-<text>pages/cash/index.wxml</text>
+<view class="h-100vh bg-eee pt-40px">
+    <view class="bg-fff fs-30px pd-30px">
+        <view class="py-30px">
+            <text>账户余额</text>
+            <text class="c-333 ml-30px">0元</text>
+        </view>
+        <view class="py-30px">
+            <text>提现金额</text>
+        </view>
+        <input placeholder="¥ 请输入金额" type="number" />
+
+        <view class="rgb174 fs-28px mt-90px b-t-174 py-30px">
+            需支付¥0.00服务费
+        </view>
+        <view class="fs-28px">
+            提现到微信钱包, <text style="color: #6B83C2"> 全部提现</text>
+        </view>
+        <button type="warn" class="b-r-50px c-fff mt-30px">提现</button>
+        <view class="fs-22px center pt-16px">1-5个工作日到账</view>
+    </view>
+</view>

@@ -1,0 +1,5 @@
+/* pages/start/index.wxss */
+.icon {
+    width: 40rpx;
+    height: 40rpx;
+}

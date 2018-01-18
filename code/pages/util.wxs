@@ -1,0 +1,9 @@
+var goto = function(e) {
+    let url = e.target
+    console.log(url)
+}
+
+
+module.exports = {
+    goto: goto
+};

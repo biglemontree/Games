@@ -1,2 +1,32 @@
 <!--pages/question/index.wxml-->
-<text>pages/question/index.wxml</text>
+<view class="h-100vh bg-eee px-20px py-30px fs-30px">
+    <view class="bg-fff px-30px py-20px">
+        [欢乐翻牌]怎么玩?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        我支付了但没有发出去?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        好友可以转发我的翻牌PK吗?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        发翻牌PK会收服务费吗?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        未领取的金额会怎么样处理?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        如何提现到微信钱包?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        提现会收取服务费吗?多久到账?
+    </view>
+    <view class="bg-fff px-30px py-20px mt-20px">
+        如何联系客服? <text class="fs-28px">(客服在线时间: 9:00-23:00)</text>
+    </view>
+    <button type="warn" class="b-r-50px c-fff mt-30px">联系在线客服</button>
+    <view class="center fs-24px mt-20px">
+        <text>v1.1.0 | </text>
+        <text class="c-blue">投诉</text>
+    </view>
+</view>
