@@ -1,6 +1,7 @@
 import {msgs, apis, getBaseURL} from './config';
 import oa from './object-assign';
 import Promise from './promise';
+const app = getApp()
 //是否加载中
 let isLoading = false;
 //默认的配置项
@@ -22,7 +23,7 @@ const defaultOption = {
 
     //token失效的状态码
     // invalidCodes: ['9001', '9000'],
-    invalidCodes: ['-1'],
+    invalidCodes: ['40002'],
 
     //成功状态码
     successCodes: ['0', '200'],
@@ -69,20 +70,21 @@ function request(opt) {
 
     return checkNetwork().then(() => new Promise((resolve, reject) => {
 
-        function handle(token, retry = false/*当token失效，是否重试*/) {
+        function handle(token, retry = true/*当token失效，是否重试*/) {
             if (option.token) {
-                // option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + token;
-                option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + 'wxlg_5383ed43120649c5898bb8ac1d691f99';
+                option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + token;
+                // option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + 'wxlg_5383ed43120649c5898bb8ac1d691f99';
             } else {
                 option.url = option.baseURL + opt.url;
             }
             option.success = (res) => {
-                if (option.ext.codes && option.ext.codes.indexOf(String(res.data.code)) >= 0) {
+                console.log(res)
+                if (option.ext.codes && option.ext.codes.indexOf(String(res.statusCode)) >= 0) {
                     //如果匹配到自定义的状态码，将执行自定义的handle。
                     option.ext.handle();
-                } else if (option.successCodes.indexOf(String(res.data.code)) >= 0) {
+                } else if (option.successCodes.indexOf(String(res.statusCode)) >= 0) {
                     resolve(res.data.data);
-                } else if (option.token && option.invalidCodes.indexOf(String(res.data.code)) >= 0 && retry) {
+                } else if (option.token && option.invalidCodes.indexOf(String(res.statusCode)) >= 0 && retry) {
                     console.log('retry!!!');
                     //当token失效,重新获取,所以:1登录->2获取token->3保存token到本地->4再次请求接口
                     login().then(code => updateToken(code, option.baseURL + option.loginURL)).then(saveToken).then(handle);
@@ -132,6 +134,7 @@ function login() {
     })
 }
 
+
 /**
  * 重新获取Token
  * @param code
@@ -143,14 +146,17 @@ function updateToken(code, loginURL) {
         //console.log('code:',code);
         wx.request({
             url: loginURL,
-            //method: 'POST',
+            method: 'POST',
             /*------------*/
-            data: {code: code},
+            data: {
+                code: code,
+                ...app.globalData.userInfo
+            },
             /*------------*/
             success(res) {
                 console.log("token", res);
                 // resolve(res.data.data);
-                resolve(res.data.data.title_token);
+                resolve(res.data);
             },
             fail(res) {
                 defaultOption.onMessage(res.errMsg || msgs[2], 'wx.request.fail');

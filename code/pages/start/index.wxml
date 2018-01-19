@@ -3,7 +3,7 @@
 <view class="h-100vh bg-eee">
     <image src="../assets/bg_top.png" class="w-100 absolute"></image>
 
-    <view style="width: 90%;margin-left: 5%;margin-top: 300rpx;" class="z3 absolute bg-fff b-r-10px center pb-30px">
+    <view style="width: 90%;margin-left: 5%;margin-top: 150rpx;" class="z3 absolute bg-fff b-r-10px center pb-30px">
         <image src="{{userInfo.avatarUrl}}" class="avatar translate" style="width: 120rpx;height: 120rpx;border-radius: 50%;"></image>
         <view class="mt-10px translate">
             <view class="center fs-36px">{{userInfo.nickName}}</view>
@@ -32,4 +32,20 @@
             </view>
         </view>
     </view>
+
+    <!--<view class="c-333 fs-28px absolute">-->
+        <!--<text>已领取0/1, 共1.00/1.00元</text>-->
+        <!--<text class="c-blue">投诉</text>-->
+    <!--</view>-->
+
+    <!--<view class="absolute">-->
+        <!--<view class="flex right-0 fs-24px b-r-50px z4 h-60px" style="background: #FA7959;" bindtap="change">-->
+            <!--<view class="c-fff flex-auto center items-center {{index=='1'?'active': ''}}" data-index="1" style="line-height: 60rpx">-->
+                <!--成功(0)-->
+            <!--</view>-->
+            <!--<view class="c-fff flex-auto center {{index=='2'?'active': ''}}" data-index="2" style="line-height: 60rpx">-->
+                <!--失败(1)-->
+            <!--</view>-->
+        <!--</view>-->
+    <!--</view>-->
 </view>
