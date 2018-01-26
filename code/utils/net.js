@@ -29,7 +29,12 @@ const defaultOption = {
     successCodes: ['0', '200'],
 
     header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        "Content-Type": 'application/x-www-form-urlencoded'
+        // "Content-Type": 'application/x-www-form-urlencoded'
+    },
+    data: {
+        appKey: 'kaixinlesong',
+        version: '1.0.0'
     },
     //加载开始
     onLoadStart: () => {
@@ -70,24 +75,33 @@ function request(opt) {
 
     return checkNetwork().then(() => new Promise((resolve, reject) => {
 
-        function handle(token, retry = true/*当token失效，是否重试*/) {
+        function handle(token, retry = false/*当token失效，是否重试*/) {
             if (option.token) {
-                option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + token;
+                console.log('token: ', token)
+
+                // option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + token;
+                option.data = {token, ...option.data,
+                    appKey: 'kaixinlesong',
+                        version: '1.0.0'
+                }
                 // option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + 'wxlg_5383ed43120649c5898bb8ac1d691f99';
-            } else {
-                option.url = option.baseURL + opt.url;
             }
+            option.url = option.baseURL + opt.url;
+
             option.success = (res) => {
                 console.log(res)
-                if (option.ext.codes && option.ext.codes.indexOf(String(res.statusCode)) >= 0) {
+                if (option.ext.codes && option.ext.codes.indexOf(String(res.data.code)) >= 0) {
                     //如果匹配到自定义的状态码，将执行自定义的handle。
                     option.ext.handle();
-                } else if (option.successCodes.indexOf(String(res.statusCode)) >= 0) {
-                    resolve(res.data.data);
-                } else if (option.token && option.invalidCodes.indexOf(String(res.statusCode)) >= 0 && retry) {
+                }else if (option.token && option.invalidCodes.indexOf(String(res.data.code)) >= 0 && retry) {
                     console.log('retry!!!');
+                    setTimeout(() => {
+
+                    }, 2000)
                     //当token失效,重新获取,所以:1登录->2获取token->3保存token到本地->4再次请求接口
-                    login().then(code => updateToken(code, option.baseURL + option.loginURL)).then(saveToken).then(handle);
+                    login().then(code => updateToken({ code, appKey: 'kaixinlesong',version: '1.0.0' }, option.baseURL + option.loginURL)).then(saveToken).then(handle);
+                }  else if (option.successCodes.indexOf(String(res.statusCode)) >= 0) {
+                    resolve(res.data);
                 } else {
                     //其他无法处理的状态码
                     option.onMessage(res.data.msg);
@@ -108,7 +122,7 @@ function request(opt) {
 
             wx.request(option);
         }
-
+        console.log(wx.getStorageSync(option.tokenKey))
         handle(wx.getStorageSync(option.tokenKey) || 'unknown', true);
     }));
 }
@@ -141,22 +155,19 @@ function login() {
  * @param loginURL
  * @returns {Promise}
  */
-function updateToken(code, loginURL) {
+function updateToken(data, loginURL) {
     return new Promise(resolve => {
         //console.log('code:',code);
         wx.request({
             url: loginURL,
-            method: 'POST',
+            // method: 'POST',
             /*------------*/
-            data: {
-                code: code,
-                ...app.globalData.userInfo
-            },
+            data: data,
             /*------------*/
             success(res) {
-                console.log("token", res);
+                console.log("token", res.data.token);
                 // resolve(res.data.data);
-                resolve(res.data);
+                resolve(res.data.token);
             },
             fail(res) {
                 defaultOption.onMessage(res.errMsg || msgs[2], 'wx.request.fail');
@@ -212,6 +223,6 @@ function checkNetwork() {
     })
 }
 
-export {login}
+export {login, updateToken, saveToken}
 
 export default request;

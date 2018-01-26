@@ -14,6 +14,32 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+function showToast(title, icon){
+    wx.hideToast()
+    wx.showToast({
+        title: title,
+        icon: icon,
+        duration: 1000,
+        mask: true,
+    })
+}
+
+/**
+ * 模态框
+ * @param {*标题} title
+ * @param {*提示内容} content
+ */
+const showModal = (title, content) => {
+    return new Promise((reslove, reject) => {
+        wx.showModal({
+            title,
+            content,
+            showCancel: false,
+            success: reslove
+        })
+    })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime, showToast, showModal
 }

@@ -1,4 +1,7 @@
 // pages/cash/index.js
+import request, {login, updateToken, saveToken} from '../../utils/net.js'
+import {msgs, apis, getBaseURL} from '../../utils/config';
+import util from '../../utils/util'
 Page({
 
   /**
@@ -14,7 +17,18 @@ Page({
   onLoad: function (options) {
   
   },
-
+  submit(e) {
+    console.log(e.detail.value.money)
+    request({
+        url: apis.postMoney,
+        method: 'post',
+        data: {
+          money: 102
+        }
+    }).then(r => {
+      console.log(r)
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

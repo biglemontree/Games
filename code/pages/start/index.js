@@ -1,5 +1,8 @@
 // pages/start/index.js
 const app = getApp()
+import request, {login, updateToken, saveToken} from '../../utils/net.js'
+import {msgs, apis, getBaseURL} from '../../utils/config';
+
 Page({
 
   /**
@@ -19,8 +22,24 @@ Page({
       this.setData({
           userInfo
       })
-  },
+      console.log(options)
+      request({
+          url: apis.postCardList,
+          method: 'post',
+          data: {
+              gameId: options.gameId,
+              type: 'left'
+          }
+      }).then(res => {
 
+      })
+  },
+    change(e){
+        console.log(e)
+        this.setData({
+            index: e.target.dataset.index
+        })
+    },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,51 +1,72 @@
 <!--pages/start/index.wxml-->
 <wxs src="../util.wxs" module="util"/>
 <view class="h-100vh bg-eee">
-    <image src="../assets/bg_top.png" class="w-100 absolute"></image>
+    <image src="../assets/bg_top.png" class="w-100 "></image>
+    <view class="bg-fff-wrap">
+        <view style="width: 90%;margin-left: 5%;" class="z3  bg-fff b-r-10px center pb-30px ">
+            <image src="{{userInfo.avatarUrl}}" class="avatar translate" style="width: 120rpx;height: 120rpx;border-radius: 50%;"></image>
+            <view class="bg-fff" style="">
+                <view class="mt-10px translate">
+                    <view class="center fs-36px">{{userInfo.nickName}}</view>
+                    <view class="center fs-30px rgb174 my-28px">{{'这个福利你能找出来算我输'}}</view>
+                </view>
+                <button type="warn" class="b-r-50px c-fff mt-50px  translate" style="width: 90%;margin-left: 5%">开始找福利</button>
 
-    <view style="width: 90%;margin-left: 5%;margin-top: 150rpx;" class="z3 absolute bg-fff b-r-10px center pb-30px">
-        <image src="{{userInfo.avatarUrl}}" class="avatar translate" style="width: 120rpx;height: 120rpx;border-radius: 50%;"></image>
-        <view class="mt-10px translate">
-            <view class="center fs-36px">{{userInfo.nickName}}</view>
-            <view class="center fs-30px rgb174 my-28px">{{'这个福利你能找出来算我输'}}</view>
+                <view class="flex justify-around fs-30px mt-50px translate">
+                    <view class="flex items-center">
+                        <image class="icon" src="../assets/share.png"></image>
+                        <navigator url="../cash/index" open-type="switchTab">
+                            <text class="  ml-10px"  >去提现</text>
+
+                        </navigator>
+                    </view>
+                    <view class="flex items-center">
+                        <image class="icon" src="../assets/money.png"></image>
+                        <navigator url="../index/index">
+                            <text class=" center ml-10px">我也发一个</text>
+
+                        </navigator>
+                    </view>
+                    <view class="flex items-center">
+                        <image class="icon" src="../assets/share.png"></image>
+                        <text class=" center ml-10px">去转发</text>
+                    </view>
+                </view>
+            </view>
         </view>
-        <button type="warn" class="b-r-50px c-fff mt-50px  translate" style="width: 90%;margin-left: 5%">开始找福利</button>
+        <view  >
 
-        <view class="flex justify-around fs-30px mt-50px translate">
-            <view class="flex items-center">
-                <image class="icon" src="../assets/share.png"></image>
-                <navigator url="../cash/index">
-                    <text class="  ml-10px"  >去提现</text>
-
-                </navigator>
+            <view class="c-333 fs-28px py-20px flex justify-between" style="width: 90%;margin-left: 5%;">
+                <text>已领取0/1, 共1.00/1.00元</text>
+                <text class="c-blue ">投诉</text>
             </view>
-            <view class="flex items-center">
-                <image class="icon" src="../assets/money.png"></image>
-                <navigator url="../index/index">
-                    <text class=" center ml-10px">我也发一个</text>
 
-                </navigator>
+            <view class="">
+                <view class="flex right-0 fs-24px z4 h-80px" style="background: #ffffff;" bindtap="change">
+                    <view class="rgb174 b-b-174 flex-auto center items-center {{index=='1'?'active': ''}}" data-index="1" style="line-height: 80rpx">
+                        成功(0)
+                    </view>
+                    <view class="rgb174 b-b-174 flex-auto center {{index=='2'?'active': ''}}" data-index="2" style="line-height: 80rpx">
+                        失败(1)
+                    </view>
+                </view>
             </view>
-            <view class="flex items-center">
-                <image class="icon" src="../assets/share.png"></image>
-                <text class=" center ml-10px">去转发</text>
+
+            <view style="" class="px-20px py-20px flex {{index=='1'?'block': 'none'}}">
+                <image src="" style="width: 40rpx;height: 40rpx;">    </image>
+                <view class="flex justify-between flex-auto">
+                    <view>
+                        <view class="fs-28px">nickName</view>
+                        <view class="fs-24px rgb174 pt-16px">挑战 0次, 失败0次</view>
+                    </view>
+                    <view>
+                        <view class="fs-28px none" style="display: none">dg</view>
+                        <view class="fs-24px">1月09</view>
+                    </view>
+                </view>
+
             </view>
         </view>
     </view>
 
-    <!--<view class="c-333 fs-28px absolute">-->
-        <!--<text>已领取0/1, 共1.00/1.00元</text>-->
-        <!--<text class="c-blue">投诉</text>-->
-    <!--</view>-->
-
-    <!--<view class="absolute">-->
-        <!--<view class="flex right-0 fs-24px b-r-50px z4 h-60px" style="background: #FA7959;" bindtap="change">-->
-            <!--<view class="c-fff flex-auto center items-center {{index=='1'?'active': ''}}" data-index="1" style="line-height: 60rpx">-->
-                <!--成功(0)-->
-            <!--</view>-->
-            <!--<view class="c-fff flex-auto center {{index=='2'?'active': ''}}" data-index="2" style="line-height: 60rpx">-->
-                <!--失败(1)-->
-            <!--</view>-->
-        <!--</view>-->
-    <!--</view>-->
 </view>

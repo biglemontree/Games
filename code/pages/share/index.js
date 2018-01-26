@@ -1,37 +1,46 @@
-// pages/record/index.js
-const app = getApp()
+// pages/share/index.js
 Page({
 
     /**
      * 页面的初始数据
      */
-    data: {
-        index: 1,
-        useInfo: null
+    data: {},
+    onShareAppMessage: function (res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '眼比手快的那个是不是你',
+            path: '/page/index?id=123',
+            success: function (res) {
+                // 转发成功
+            },
+            fail: function (res) {
+                // 转发失败
+            }
+        }
     },
-
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let userInfo = app.globalData.userInfo
-        console.log(userInfo)
-        this.setData({
-            userInfo
-        })
+        wx.request({
+            url: 'https://api.weixin.qq.com/wxa/getwxacode',
+            data: {
+                access_token: this.data.accessToken
+            },
+            success(res){
+                console.log(res)
 
-    },
-    change(e){
-
-        this.setData({
-            index: e.target.dataset.index
+            }
         })
     },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
 
     },
 

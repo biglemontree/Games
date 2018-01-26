@@ -1,67 +1,84 @@
 <!--index.wxml-->
-<image src="/pages/assets/bg.png" class="w-100vw h-100vh fixed" width="100vw" ></image>
+<image src="/pages/assets/bg.png" class="w-100vw h-100vh fixed" width="100vw"></image>
 <view class="container px-40px pt-80px fixed w-100vw">
-  <view class=" bg-fff px-60px b-r-10px" style="height: 800rpx;width: 100%">
-    <form action="" bindsubmit="formSubmit">
+    <view class=" bg-fff px-60px b-r-10px" style="height: 800rpx;width: 100%">
+        <form action="" bindsubmit="formSubmit">
 
-      <view class=''>
-      <view class="b-b-174 py-20px">
-        <picker bindchange="bindPickerChange" name="picker" value="{{index}}" range="{{array}}">
-          <view class="picker flex justify-between items-center">
-            {{array[index]}}
-            <image src="../assets/down.png" style="width: 20rpx;height: 20rpx" ></image>
-          </view>
-        </picker>
-      </view>
-      <view class="flex  items-center fs-24px py-20px">
-        <view class="fs-24px mr-30px">
-          设置难度
-        </view>
-        <view class="flex-auto flex" bindtap="setting">
-          <text data-index='1' class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==1?'active':''}}">简单</text>
-          <text data-index='2' class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==2?'active':''}}">正常</text>
-          <text data-index='3' class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==3?'active':''}}">困难</text>
-          <text data-index='4' class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==4?'active':''}}">变态</text>
-        </view>
-      </view>
-      <view class="flex items-center fs-24px py-20px">
-        <view class="fs-24px mr-30px">
-          赏金(元)
-        </view>
-        <view class="flex-auto">
-          <input type="number" name="money" class="b-b-174" placeholder="填写赏金总金额" />
-        </view>
-      </view>
-      <view class="flex justify-between items-center fs-24px py-20px">
-        <view class="fs-24px mr-30px">
-          数量(个)
-        </view>
-        <view class="flex-auto">
-          <input type="digit" name="number" class="b-b-174 " placeholder="填写打赏个数"/>
-        </view>
-      </view>
-      <view class="flex items-center fs-24px py-20px">
-        <view class="fs-24px mr-30px">
-          设置封面
-        </view>
-        <view class="flex ">
-          <image class='mr-20px' src="{{userInfo.avatarUrl}}" class="w-142px h-142px"></image>
-          <view class='flex flex-column justify-between ml-20px'>
-            <image class="" src="../assets/add.png" class="w-50px h-50px"></image>
-            <image class="" src="../assets/refresh.png" class="w-50px h-50px"></image>
-          </view>
-        </view>
-      </view>
-      <view class="center fs-18px c-999">
-        需支付¥<text></text>服务费
-      </view>
-      <view class="mt-20px relative" bindtap="create">
-        <button formType="submit" class="c-fff z4 absolute left-0 right-0 top-0 bottom-0 center" style="line-height: 80rpx;">生成翻牌PK</button>
-        <image src="/pages/assets/btn_pk.png" class="absolute" style="height: 80rpx;width: 100%"></image>
-      </view>
+            <view class=''>
+                <view class="b-b-174 py-20px">
+                    <picker bindchange="bindPickerChange" name="playWord" value="{{wordArray[wordIndex]}}"
+                            range="{{wordArray}}">
+                        <view class="picker flex justify-between items-center">
+                            {{wordArray[wordIndex]}}
+                            <image src="../assets/down.png" style="width: 20rpx;height: 20rpx"></image>
+                        </view>
+                    </picker>
+                </view>
+                <view class="flex  items-center fs-24px py-20px">
+                    <view class="fs-24px mr-30px">
+                        设置难度
+                    </view>
+                    <view class="flex-auto flex" bindtap="setting">
+                        <text data-index='1'
+                              class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==1?'active':''}}">简单
+                        </text>
+                        <text data-index='2'
+                              class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==2?'active':''}}">正常
+                        </text>
+                        <text data-index='3'
+                              class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==3?'active':''}}">困难
+                        </text>
+                        <text data-index='4'
+                              class="rgb174 flex-1  b174 px-10px py-8px center {{activeIndex==4?'active':''}}">变态
+                        </text>
+                    </view>
+                </view>
+                <view class="flex items-center fs-24px py-20px">
+                    <view class="fs-24px mr-30px">
+                        赏金(元)
+                    </view>
+                    <view class="flex-auto">
+                        <input type="number" name="money" value="1" class="b-b-174" placeholder="填写赏金总金额(元)"/>
+                    </view>
+                </view>
+                <view class="flex justify-between items-center fs-24px py-20px">
+                    <view class="fs-24px mr-30px">
+                        数量(个)
+                    </view>
+                    <view class="flex-auto">
+                        <input type="digit" name="number" value="1" class="b-b-174 " placeholder="填写打赏个数"/>
+                    </view>
+                </view>
+                <view class="flex items-center fs-24px py-20px">
+                    <view class="fs-24px mr-30px">
+                        设置封面
+                    </view>
+                    <view class="flex ">
+                        <image class='mr-20px' src="{{userInfo.avatarUrl}}" class="w-142px h-142px"></image>
+                        <view class='flex flex-column justify-between ml-20px'>
+                            <image class="" src="../assets/add.png" class="w-50px h-50px" bindtap="chooseImage"></image>
+                            <image class="" src="../assets/refresh.png" class="w-50px h-50px"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="center fs-18px c-999">
+                    需支付¥
+                    <text></text>
+                    服务费
+                </view>
+                <view class="mt-20px relative">
+                    <button formType="submit" plain='true' class=" z4 absolute left-0 right-0 top-0 bottom-0 center"
+                            style="line-height: 80rpx;height: 80rpx;border: none;color: #ffffff">生成翻牌PK
+                    </button>
+                    <image src="/pages/assets/btn_pk.png" class="absolute" style="height: 80rpx;width: 100%"></image>
+                </view>
+            </view>
+
+        </form>
     </view>
-
-    </form>
-  </view>
-  <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
+    <view class="c-fff center mt-20px">
+        <text class="mr-10px" bindtap="introduce"> 玩法介绍 |</text>
+        <text class="ml-10px">联系客服</text>
+    </view>
+    <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
 </view>

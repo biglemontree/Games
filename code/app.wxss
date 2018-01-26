@@ -15,6 +15,7 @@ view {box-sizing: border-box;}
 .h-30px {height: 30rpx;}
 .h-50px {height: 50rpx;}
 .h-60px {height: 60rpx;}
+.h-80px {height: 80rpx;}
 .h-142px {height: 142rpx;}
 .pd-10px {padding: 20rpx;}
 
@@ -40,6 +41,11 @@ view {box-sizing: border-box;}
 .mt-300px {margin-top: 300rpx}
 .bg-fff  {background-color: #ffffff;}
 .bg-eee  {background-color: #eeeeee;}
+.bg-000  {background-color: #000000;}
+.bg-333  {background-color: #333333;}
+.bg-666  {background-color: #666666;}
+.bg-999  {background-color: #999999;}
+.bg-AEAEAE  {background-color: #AEAEAE;}
 .c-blue{color: #6B83C2}
 .rgb174 {
   color: rgb(174, 174, 174);

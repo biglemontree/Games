@@ -1,0 +1,8 @@
+<!--pages/share/index.wxml-->
+<view>
+    <view class="b-r-10px bg-fff pd-30px">
+        <button open-type='share' class="b-r-50px" type="warn">转发到好友或群聊</button>
+        <button class="b-r-50px mt-20px bg-AEAEAE c-fff">生成朋友圈分享图</button>
+        <view class="fs-24px center mt-10px">我也试一试</view>
+    </view>
+</view>

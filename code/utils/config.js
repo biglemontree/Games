@@ -63,7 +63,10 @@ const apis = {
     //登录
     getLogin: 'user/on/login',
     postNewCard: 'guess/card/create',
-    postSubmitCard: 'guess/card/submit'
+    postSubmitCard: 'guess/card/submit',
+    postMoney: 'pay/fee/count',
+    postAccesstoken: '/user/wx/accesstoken',
+    postCardList: 'guess/card/list',                // 获取翻牌游戏记录列表
 };
 
 

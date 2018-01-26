@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/start/index",
     "pages/index/index",
+    "pages/start/index",
     "pages/cash/index",
     "pages/question/index",
-    "pages/record/index"
+    "pages/record/index",
+    "pages/share/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

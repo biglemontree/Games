@@ -1,5 +1,5 @@
 //app.js
-import request, {login} from './utils/net.js'
+import request, {login, updateToken, saveToken} from './utils/net.js'
 import {apis} from './utils/config.js'
 
 App({
@@ -42,6 +42,7 @@ App({
               console.log(res.userInfo)
               login().then(data => {
                 console.log(data)
+
               })
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
