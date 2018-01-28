@@ -66,7 +66,14 @@ const apis = {
     postSubmitCard: 'guess/card/submit',
     postMoney: 'pay/fee/count',
     postAccesstoken: '/user/wx/accesstoken',
-    postCardList: 'guess/card/list',                // 获取翻牌游戏记录列表
+    postCardList: 'guess/card/list',                // 获取翻牌游戏记录列表(弃)
+    postAcode: 'guess/card/acode',                  // 获取翻牌游戏小程序码 
+    postBalance: 'user/my/balance',           // 查询我的余额    
+    postPocket: 'pay/fetch/money',    //  提现到零钱接口
+    postUpload: 'user/image/upload', // 图片上传
+    postResult: 'guess/card/submit', //   提交游戏结果
+    postLogo: 'guess/card/logos',   //  获取翻牌游戏默认Logo
+    postDetail: 'guess/card/detail',  // 翻牌游戏详情
 };
 
 

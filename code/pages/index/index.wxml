@@ -54,7 +54,7 @@
                         设置封面
                     </view>
                     <view class="flex ">
-                        <image class='mr-20px' src="{{userInfo.avatarUrl}}" class="w-142px h-142px"></image>
+                        <image class='mr-20px' src="{{cardImage}}" class="w-142px h-142px"></image>
                         <view class='flex flex-column justify-between ml-20px'>
                             <image class="" src="../assets/add.png" class="w-50px h-50px" bindtap="chooseImage"></image>
                             <image class="" src="../assets/refresh.png" class="w-50px h-50px"></image>
@@ -80,5 +80,5 @@
         <text class="mr-10px" bindtap="introduce"> 玩法介绍 |</text>
         <text class="ml-10px">联系客服</text>
     </view>
-    <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
+    
 </view>

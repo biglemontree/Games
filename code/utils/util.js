@@ -14,11 +14,11 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-function showToast(title, icon){
+function showToast(title, icon='none'){
     wx.hideToast()
     wx.showToast({
         title: title,
-        icon: icon,
+        icon: icon || 'none',
         duration: 1000,
         mask: true,
     })

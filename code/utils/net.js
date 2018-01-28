@@ -75,7 +75,7 @@ function request(opt) {
 
     return checkNetwork().then(() => new Promise((resolve, reject) => {
 
-        function handle(token, retry = false/*当token失效，是否重试*/) {
+        function handle(token, retry = true/*当token失效，是否重试*/) {
             if (option.token) {
                 console.log('token: ', token)
 
@@ -95,11 +95,13 @@ function request(opt) {
                     option.ext.handle();
                 }else if (option.token && option.invalidCodes.indexOf(String(res.data.code)) >= 0 && retry) {
                     console.log('retry!!!');
+                    let times = 3
                     setTimeout(() => {
 
-                    }, 2000)
-                    //当token失效,重新获取,所以:1登录->2获取token->3保存token到本地->4再次请求接口
-                    login().then(code => updateToken({ code, appKey: 'kaixinlesong',version: '1.0.0' }, option.baseURL + option.loginURL)).then(saveToken).then(handle);
+                        //当token失效,重新获取,所以:1登录->2获取token->3保存token到本地->4再次请求接口
+                        login().then(code => updateToken({ code, appKey: 'kaixinlesong',version: '1.0.0' }, option.baseURL + option.loginURL)).then(saveToken).then(handle);
+                    }, 500)
+                    
                 }  else if (option.successCodes.indexOf(String(res.statusCode)) >= 0) {
                     resolve(res.data);
                 } else {

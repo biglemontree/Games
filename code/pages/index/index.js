@@ -9,11 +9,11 @@ import util from '../../utils/util'
 Page({
     data: {
 
-        wordArray: ['能找到这个福利算你赢', '中国', '巴西', '日本'],
+        wordArray: ['能找到这个福利算你赢', '比一比谁的眼力最棒', '一起来拼全力领福利', '新年快乐！你们的礼物在这里', '最最最难难难的翻牌PK', '眼比手快的那个是不是你'],
         wordIndex: 0,
-        hardLevel: ['简单', '正常', '困难', '变态'],
+        hardLevel: [{value: easy, text: '简单'}, {value: normal, text: '正常'}, {value: hard, text: '困难'}, {value: abnormal, text: '变态'}],
         activeIndex: 1,
-        cardImage: '',
+        cardImage: app.globalData.userInfo.avatarUrl,
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -21,7 +21,6 @@ Page({
     },
     //事件处理函数
     bindPickerChange: function (e) {
-        console.log(e)
         this.setData({
             wordIndex: e.detail.value
         })
@@ -67,6 +66,7 @@ Page({
             this.setData({
                 accessToken: r.accessToken
             })
+
             wx.setStorage({
                 key: "accessToken",
                 data: r.accessToken
@@ -116,7 +116,7 @@ Page({
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: res => {
                 this.setData({
-                    cardImage: res.tempFilePaths
+                    cardImage: res.tempFilePaths[0]
                 })
             }
         });
@@ -130,12 +130,13 @@ Page({
         })
     },
     introduce(e) {
+
         util.showModal('玩法介绍', '你可以设置一个带奖励的翻牌PK, 好友挑战成功才能领到奖励 , 提示可以通过调节难度, 设置封面图来提高趣味性哦~')
     },
     formSubmit(e){ // create
 
         let value = e.detail.value
-        const { playWord, money, number } = value
+        const { playWord, money, number, hardLevel, activeIndex } = value
         const { wordArray, wordIndex, hardLevel, activeIndex, cardImage } = this.data
         if (!money || !number) {
             util.showToast('金额和数量不能为空')
@@ -148,7 +149,7 @@ Page({
                 playWord, number,
                 // hardLevel: hardLevel[activeIndex],
                 money: 100 * money,
-                hardLevel: 'normal',
+                hardLevel: hardLevel[activeIndex].value,
                 cardImage: cardImage
             }
         }).then(r => {
@@ -159,16 +160,10 @@ Page({
                 'signType': 'MD5',
                 'success': function (res) {
                     console.log('this.data.accessToken', this.data.accessToken)
-                    // wx.request({
-                    //     url: 'https://api.weixin.qq.com/wxa/getwxacode',
-                    //     data: {
-                    //         access_token: this.data.accessToken
-                    //     },
-                    //     success(res){
-                    //         console.log(res)
-                    //
-                    //     }
-                    // })
+
+                    wx.navigateTo({
+                        url: `../start/index?gameId=${r.gameId}`
+                    })
                 },
                 'fail': function (res) {
                 }

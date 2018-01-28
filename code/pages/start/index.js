@@ -10,7 +10,8 @@ Page({
    */
   data: {
       index: 1,
-      useInfo: null
+      useInfo: null,
+      detail: null
   },
 
   /**
@@ -18,21 +19,47 @@ Page({
    */
   onLoad: function (options) {
       let userInfo = app.globalData.userInfo
-      console.log(userInfo)
+    //   console.log(userInfo)
       this.setData({
-          userInfo
+          userInfo,
+          gameId: options.gameId
+      })
+      request({
+          url: apis.postDetail,
+          data: options,
+        //   {
+        //     gameId: '2332dcf53d624ea98d013e5a7dcf69b0'
+        //   }
+      }).then(r => {
+         this.setData({
+             detail: r
+         })   
       })
       console.log(options)
-      request({
-          url: apis.postCardList,
-          method: 'post',
-          data: {
-              gameId: options.gameId,
-              type: 'left'
-          }
-      }).then(res => {
+    //   request({
+    //       url: apis.postCardList,
+    //       method: 'post',
+    //       data: {
+    //           gameId: options.gameId,
+    //           type: 'left'
+    //       }
+    //   }).then(res => {
 
-      })
+    //   })
+  },
+  share(){
+      const {nickname, playWord} = this.data.detail
+    request({
+        url: apis.postAcode,
+        method: 'post',
+        data: {
+            gameId: this.data.gameId
+        }
+    }).then(r => {
+        wx.navigateTo({
+            url: `../share/index?url=${r.url}&nickname=${nickname}&playWord=${playWord}`
+        })
+    })
   },
     change(e){
         console.log(e)

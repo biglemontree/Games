@@ -4,14 +4,15 @@
     <image src="../assets/bg_top.png" class="w-100 "></image>
     <view class="bg-fff-wrap">
         <view style="width: 90%;margin-left: 5%;" class="z3  bg-fff b-r-10px center pb-30px ">
-            <image src="{{userInfo.avatarUrl}}" class="avatar translate" style="width: 120rpx;height: 120rpx;border-radius: 50%;"></image>
+            <image src="{{detail.cardImage}}" class="avatar translate" style="width: 120rpx;height: 120rpx;border-radius: 50%;"></image>
             <view class="bg-fff" style="">
                 <view class="mt-10px translate">
-                    <view class="center fs-36px">{{userInfo.nickName}}</view>
-                    <view class="center fs-30px rgb174 my-28px">{{'这个福利你能找出来算我输'}}</view>
+                    <view class="center fs-36px">{{detail.nickname}}</view>
+                    <view class="center fs-30px rgb174 my-28px">{{detail.playWord}}</view>
                 </view>
-                <button type="warn" class="b-r-50px c-fff mt-50px  translate" style="width: 90%;margin-left: 5%">开始找福利</button>
-
+                <button wx:if="{{!detail.end}}" type="warn" class="b-r-50px c-fff mt-50px  translate" style="width: 90%;margin-left: 5%">开始找福利</button>
+                <button wx:else class="b-r-50px c-fff mt-50px  translate bg-AEAEAE" style="width: 90%;margin-left: 5%；">你来晚了，该翻牌PK已过期</button>
+                
                 <view class="flex justify-around fs-30px mt-50px translate">
                     <view class="flex items-center">
                         <image class="icon" src="../assets/share.png"></image>
@@ -29,7 +30,7 @@
                     </view>
                     <view class="flex items-center">
                         <image class="icon" src="../assets/share.png"></image>
-                        <text class=" center ml-10px">去转发</text>
+                        <text class=" center ml-10px" bindtap='share'>去转发</text>
                     </view>
                 </view>
             </view>
@@ -37,17 +38,17 @@
         <view  >
 
             <view class="c-333 fs-28px py-20px flex justify-between" style="width: 90%;margin-left: 5%;">
-                <text>已领取0/1, 共1.00/1.00元</text>
+                <text>已领取{{detail.sentNum/100}}/{{detail.totalNum/100}}, 共{{detail.sentMoney/100}}/{{(detail.totalMoney/100)}}元</text>
                 <text class="c-blue ">投诉</text>
             </view>
 
             <view class="">
                 <view class="flex right-0 fs-24px z4 h-80px" style="background: #ffffff;" bindtap="change">
                     <view class="rgb174 b-b-174 flex-auto center items-center {{index=='1'?'active': ''}}" data-index="1" style="line-height: 80rpx">
-                        成功(0)
+                        成功({{detail.winners.length}})
                     </view>
                     <view class="rgb174 b-b-174 flex-auto center {{index=='2'?'active': ''}}" data-index="2" style="line-height: 80rpx">
-                        失败(1)
+                        失败({{detail.losers.length}})
                     </view>
                 </view>
             </view>
@@ -68,5 +69,9 @@
             </view>
         </view>
     </view>
-
+    <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
+    <view class="fixed left-0">
+            <!-- <import src="./game.wxml" /> -->
+            <include src="./game.wxml"/>
+        </view>
 </view>

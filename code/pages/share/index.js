@@ -25,16 +25,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        wx.request({
-            url: 'https://api.weixin.qq.com/wxa/getwxacode',
-            data: {
-                access_token: this.data.accessToken
-            },
-            success(res){
-                console.log(res)
-
-            }
-        })
+        this.setData(options)
+        
     },
 
     /**
