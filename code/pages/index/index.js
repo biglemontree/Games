@@ -11,7 +11,7 @@ Page({
 
         wordArray: ['能找到这个福利算你赢', '比一比谁的眼力最棒', '一起来拼全力领福利', '新年快乐！你们的礼物在这里', '最最最难难难的翻牌PK', '眼比手快的那个是不是你'],
         wordIndex: 0,
-        hardLevel: [{value: easy, text: '简单'}, {value: normal, text: '正常'}, {value: hard, text: '困难'}, {value: abnormal, text: '变态'}],
+        hardLevel: [{value: 'easy', text: '简单'}, {value: 'normal', text: '正常'}, {value: 'hard', text: '困难'}, {value: 'abnormal', text: '变态'}],
         activeIndex: 1,
         cardImage: app.globalData.userInfo.avatarUrl,
         userInfo: {},
@@ -99,15 +99,6 @@ Page({
                 }
             })
         }
-
-        // const ctx = wx.createCanvasContext('myCanvas')
-        // ctx.setFillStyle('red')
-        // ctx.fillRect(10, 10, 150, 75)
-        //
-        // ctx.drawImage(res.tempFilePaths[0], 0, 0, 150, 100)
-        // ctx.draw()
-
-
     },
     chooseImage(e){
         wx.chooseImage({
@@ -136,7 +127,7 @@ Page({
     formSubmit(e){ // create
 
         let value = e.detail.value
-        const { playWord, money, number, hardLevel, activeIndex } = value
+        const { playWord, money, number } = value
         const { wordArray, wordIndex, hardLevel, activeIndex, cardImage } = this.data
         if (!money || !number) {
             util.showToast('金额和数量不能为空')

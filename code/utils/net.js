@@ -67,42 +67,50 @@ const defaultOption = {
  * @param opt
  * @returns {Promise}
  */
-function request(opt) {
+  function request(opt){
 
     if (!isLoading) defaultOption.onLoadStart();
     isLoading = true;
     let option = oa({}, defaultOption, opt);
 
     return checkNetwork().then(() => new Promise((resolve, reject) => {
-
+        let times = 3
         function handle(token, retry = true/*当token失效，是否重试*/) {
             if (option.token) {
-                console.log('token: ', token)
-
                 // option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + token;
-                option.data = {token, ...option.data,
+                option.data = {
+                    token,
                     appKey: 'kaixinlesong',
-                        version: '1.0.0'
+                    version: '1.0.0'
                 }
+                console.log('請求token: ', token);
                 // option.url = option.baseURL + opt.url + '?' + option.tokenKey + '=' + 'wxlg_5383ed43120649c5898bb8ac1d691f99';
             }
             option.url = option.baseURL + opt.url;
 
             option.success = (res) => {
-                console.log(res)
-                if (option.ext.codes && option.ext.codes.indexOf(String(res.data.code)) >= 0) {
+
+                if (option.ext.codes && option.ext.codes.includes(String(res.data.code)) ) {
                     //如果匹配到自定义的状态码，将执行自定义的handle。
                     option.ext.handle();
-                }else if (option.token && option.invalidCodes.indexOf(String(res.data.code)) >= 0 && retry) {
+                }else if (option.token && option.invalidCodes.includes(String(res.data.code)) && retry) {
                     console.log('retry!!!');
-                    let times = 3
-                    setTimeout(() => {
 
+                    setTimeout(() => {
+                        times--
+                        if (times<0) {
+                          return
+                        }
                         //当token失效,重新获取,所以:1登录->2获取token->3保存token到本地->4再次请求接口
                         login().then(code => updateToken({ code, appKey: 'kaixinlesong',version: '1.0.0' }, option.baseURL + option.loginURL)).then(saveToken).then(handle);
+                        // const code = await  login()
+                        // await token = updateToken({ code, appKey: 'kaixinlesong',version: '1.0.0' }, option.baseURL + option.loginURL))
+                        // await saveToken(token)
+                        // console.log(token, ': token');
+                        // handle(token)
                     }, 500)
-                    
-                }  else if (option.successCodes.indexOf(String(res.statusCode)) >= 0) {
+
+                }  else if ( option.successCodes.includes(String(res.statusCode)) ) {
                     resolve(res.data);
                 } else {
                     //其他无法处理的状态码
@@ -124,7 +132,6 @@ function request(opt) {
 
             wx.request(option);
         }
-        console.log(wx.getStorageSync(option.tokenKey))
         handle(wx.getStorageSync(option.tokenKey) || 'unknown', true);
     }));
 }
@@ -134,7 +141,6 @@ function request(opt) {
  * @returns {Promise}
  */
 function login() {
-
     return new Promise(resolve => {
         wx.login({
             success(res) {
@@ -167,7 +173,9 @@ function updateToken(data, loginURL) {
             data: data,
             /*------------*/
             success(res) {
-                console.log("token", res.data.token);
+                if (defaultOption.invalidCodes.includes(String(res.data.code))) {
+
+                }
                 // resolve(res.data.data);
                 resolve(res.data.token);
             },
@@ -184,20 +192,22 @@ function updateToken(data, loginURL) {
  */
 function saveToken(value) {
     return new Promise(resolve => {
-        wx.setStorage({
-            key: defaultOption.tokenKey,
-            data: value,
-            success(res) {
-                //console.log('重新保存了token);
-                resolve(value);
-            },
-            fail(res) {
-                defaultOption.onMessage(res.errMsg || msgs[4], 'wx.setStorage.fail');
-            },
-            complete() {
-                //console.log('set storage complete');
-            }
-        })
+        wx.setStorageSync(defaultOption.tokenKey, value)
+        resolve(value);
+        // wx.setStorage({
+        //     key: defaultOption.tokenKey,
+        //     data: value,
+        //     success(res) {
+        //         console.log('重新保存了token: ', value);
+        //         resolve(value);
+        //     },
+        //     fail(res) {
+        //         defaultOption.onMessage(res.errMsg || msgs[4], 'wx.setStorage.fail');
+        //     },
+        //     complete() {
+        //         //console.log('set storage complete');
+        //     }
+        // })
     })
 }
 

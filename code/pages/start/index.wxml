@@ -12,7 +12,7 @@
                 </view>
                 <button wx:if="{{!detail.end}}" type="warn" class="b-r-50px c-fff mt-50px  translate" style="width: 90%;margin-left: 5%">开始找福利</button>
                 <button wx:else class="b-r-50px c-fff mt-50px  translate bg-AEAEAE" style="width: 90%;margin-left: 5%；">你来晚了，该翻牌PK已过期</button>
-                
+
                 <view class="flex justify-around fs-30px mt-50px translate">
                     <view class="flex items-center">
                         <image class="icon" src="../assets/share.png"></image>
@@ -70,8 +70,11 @@
         </view>
     </view>
     <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
-    <view class="fixed left-0">
-            <!-- <import src="./game.wxml" /> -->
-            <include src="./game.wxml"/>
-        </view>
+    <view class="fixed left-0 right-0 bottom-0 top-0 opacity-8 bg-000 px-20px pt-40px pb-30px" >
+        <!-- <import src="./game.wxml" /> -->
+        <view class="c-fff fs-36px center">第一次挑战</view>
+        <include src="./game.wxml"/>
+        <view class="center c-fff fs-30px mt-20px mb-50px">找到躲起来的福利吧</view>
+        <view class="center c-fff fs-30px b-r-50px z4" bindtap='giveup'>放弃挑战</view>
+    </view>
 </view>

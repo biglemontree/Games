@@ -3,6 +3,13 @@ const app = getApp()
 import request, {login, updateToken, saveToken} from '../../utils/net.js'
 import {msgs, apis, getBaseURL} from '../../utils/config';
 
+let data = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+]
 Page({
 
   /**
@@ -27,15 +34,17 @@ Page({
       request({
           url: apis.postDetail,
           data: options,
+          method: 'post',
         //   {
         //     gameId: '2332dcf53d624ea98d013e5a7dcf69b0'
         //   }
       }).then(r => {
          this.setData({
              detail: r
-         })   
+         })
       })
-      console.log(options)
+      this.getLogo()
+
     //   request({
     //       url: apis.postCardList,
     //       method: 'post',
@@ -46,6 +55,41 @@ Page({
     //   }).then(res => {
 
     //   })
+  },
+  touch(e) {
+      console.log(e, 'ddd');
+  },
+  giveup(e) {
+      console.log(e);
+
+  },
+  draw(logo) {
+      const ctx = wx.createCanvasContext('myCanvas')
+      // ctx.setFillStyle('red')
+      ctx.fillRect(10, 60, 63*5, 63*5)
+
+      // ctx.drawImage(this.data.logo, 0, 0, 150, 100)
+      console.log(logo);
+      data.forEach((current, i) => {
+          current.forEach((item, j) => {
+
+              ctx.drawImage(logo, 63*i+8, 63*j+8, 63, 63)
+              ctx.moveTo(63*i+8, 63*j+8)
+          })
+      })
+      // ctx.drawImage(logo, 0, 63, 63, 63)
+      ctx.draw()
+  },
+  getLogo() {
+    request({
+      url: apis.postLogo,
+      method: 'post',
+    }).then(r => {
+      this.setData({
+        logo: r[0]
+      })
+      this.draw(r[0])
+    })
   },
   share(){
       const {nickname, playWord} = this.data.detail
@@ -71,48 +115,27 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })
