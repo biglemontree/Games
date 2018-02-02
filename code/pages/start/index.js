@@ -77,6 +77,7 @@ Page({
               ctx.moveTo(63*i+8, 63*j+8)
           })
       })
+      ctx.rotate(360deg)
       // ctx.drawImage(logo, 0, 63, 63, 63)
       ctx.draw()
   },
