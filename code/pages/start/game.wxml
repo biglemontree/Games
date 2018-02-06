@@ -1,5 +1,15 @@
 <view>
-<canvas canvas-id="myCanvas" style="border: 1px solid;width: 347px; height: 347px;margin: 0 auto;" bindtouchstart="touch" bindlongtap="touch" bindtap="touch" bindtouchmove="touch" bindtouchend="touch"/>
+<!-- <canvas canvas-id="myCanvas" style="border: 1px solid;width: 347px; height: 347px;margin: 0 auto;" bindtouchstart="touch" bindlongtap="touch" bindtap="touch" bindtouchmove="touch" bindtouchend="touch"/> -->
 
+<view class="board" >
+<view class="rows" wx:for="{{cards}}" wx:for-index="idx" wx:for-item="row">
+    <view wx:for="{{row}}" class="cols"   wx:for-index="idy"  wx:for-item="card" >
+        <view  class="" data-ix="{{idx}}"  data-iy="{{idy}}"  bindtap="onTap" >
+            <image class="card" style="display:{{card.state == 0 ? 'none' : 'block'}}" mode="scaleToFill" src= "https://wxlg.01solomo.com/little/images/wukongfanpai/acode/682ad711ff8448aaaa8e58606ddd34cb.jpg" data-card="{{card}}"></image> <!--牌正面-->
+            <image class="card back" style="display:{{card.state != 0 ? 'none' : 'block'}}" mode="scaleToFill" src= "https://wxlg.01solomo.com/little/logo/default_100.png" ></image> <!--牌背面-->
+        </view>
+    </view>
+</view>
+</view>
 
 </view>

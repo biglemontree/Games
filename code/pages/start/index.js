@@ -77,7 +77,8 @@ Page({
               ctx.moveTo(63*i+8, 63*j+8)
           })
       })
-      ctx.rotate(360deg)
+
+      ctx.rotate(180*Math.PI/180)
       // ctx.drawImage(logo, 0, 63, 63, 63)
       ctx.draw()
   },
@@ -89,7 +90,7 @@ Page({
       this.setData({
         logo: r[0]
       })
-      this.draw(r[0])
+      // this.draw(r[0])
     })
   },
   share(){
@@ -112,26 +113,6 @@ Page({
             index: e.target.dataset.index
         })
     },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
 
   /**
    * 用户点击右上角分享
